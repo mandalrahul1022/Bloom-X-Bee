@@ -1,0 +1,12 @@
+[
+  {"id":"central_valley_us","name":"Central Valley, California, USA","lat":36.6,"lon":-119.6,"npn":true,"species":["California poppy","Almond","Grape"]},
+  {"id":"great_plains_us","name":"Great Plains, USA","lat":41.5,"lon":-100.0,"npn":true,"species":["Sunflower","Prairie clover","Bluestem"]},
+  {"id":"tucson_az_us","name":"Tucson, Arizona, USA","lat":32.2217,"lon":-110.9265,"npn":true,"species":["Saguaro","Creosote bush","Mesquite"]},
+  {"id":"gainesville_fl_us","name":"Gainesville, Florida, USA","lat":29.6516,"lon":-82.3248,"npn":true,"species":["Azalea","Saw palmetto","Live oak"]},
+  {"id":"ithaca_ny_us","name":"Ithaca, New York, USA","lat":42.4439,"lon":-76.5019,"npn":true,"species":["Red maple","Apple","Lilac"]},
+  {"id":"minneapolis_mn_us","name":"Minneapolis, Minnesota, USA","lat":44.9778,"lon":-93.2650,"npn":true,"species":["Prairie coneflower","Milkweed","Sugar maple"]},
+  {"id":"lisse_netherlands","name":"Lisse, Netherlands (Tulip Region)","lat":52.26,"lon":4.55,"npn":false,"species":["Tulip","Hyacinth","Daffodil"]},
+  {"id":"kyoto_japan","name":"Kyoto, Japan","lat":35.01,"lon":135.77,"npn":false,"species":["Cherry blossom","Camellia","Plum"]},
+  {"id":"kathmandu_nepal","name":"Kathmandu Valley, Nepal","lat":27.72,"lon":85.32,"npn":false,"species":["Rhododendron","Mustard","Marigold"]},
+  {"id":"sao_paulo_brazil","name":"São Paulo, Brazil","lat":-23.55,"lon":-46.63,"npn":false,"species":["Ipê amarelo","Coffee","Jacaranda"]}
+]

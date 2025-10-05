@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bloom X Bee</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#0a0f1a; color:#eaf0ff; }
+    .wrap { display:grid; grid-template-columns: 1fr 420px; height:100vh; }
+    #map { height:100vh; }
+    .panel { padding:14px; overflow:auto; background:rgba(7,10,18,0.85); backdrop-filter: blur(8px); }
+    .pill { display:inline-block; padding:6px 10px; margin:4px; border-radius:999px; background:#121a2b; color:#cfe0ff; border:1px solid #1f2a44; font-size:12px; }
+    select, input { background:#0f1626; color:#d9e6ff; border:1px solid #2a3552; padding:6px; border-radius:8px; }
+    .meta { margin:6px 0; }
+    .section { margin:10px 0 18px; padding:10px; border-radius:14px; background:#0e1524; border:1px solid #1d2742; }
+    .h { font-weight:700; margin-bottom:8px; opacity:0.92; }
+    canvas { width:100% !important; height:240px !important; }
+    .badge-ok { background:#0d2; color:#021; }
+    .badge-err { background:#d21; color:#fff; }
+    /* completely hide selected blocks while keeping DOM nodes for app.js safety */
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="map"></div>
+    <div class="panel">
+      <div class="section">
+        <div class="h">Select</div>
+        <select id="placeSel" aria-label="Select a place"></select>
+        <span id="dataSource" class="pill">Source: …</span>
+      </div>
+
+      <div class="section">
+        <div class="h" id="where">—</div>
+        <div id="meta" class="meta"></div>
+        <div id="stats" class="meta"></div>
+        <div id="npn" class="meta"></div>
+        <div id="inat" class="meta"></div>
+      </div>
+
+      <div class="section">
+        <div class="h">EVI2 (this year)</div>
+        <canvas id="chart"></canvas>
+        <div id="forecast" class="meta"></div>
+      </div>
+
+      <div class="section">
+        <div class="h">Bee colony & honey</div>
+        <label>Hives per km²: <input id="hivesPerKm2" type="number" min="1" step="1" value="4" style="width:90px"></label>
+        <canvas id="beeChart"></canvas>
+        <div id="feas" class="meta"></div>
+      </div>
+
+      <!-- Hidden: Multi-year trend -->
+      <div class="section hidden">
+        <div class="h">Multi-year trend (SoS/Peak/EoS DoY)</div>
+        <canvas id="trendChart"></canvas>
+      </div>
+
+      <!-- Hidden: Tests/diagnostics -->
+      <div class="section hidden">
+        <span id="testStatus" class="pill">Tests: pending…</span>
+        <div id="diagnostics" class="meta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
