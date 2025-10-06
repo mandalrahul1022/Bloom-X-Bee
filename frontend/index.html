@@ -11,7 +11,7 @@
     .wrap { display:grid; grid-template-columns: 1fr 420px; height:100vh; }
     #map { height:100vh; }
     .panel { padding:14px; overflow:auto; background:rgba(7,10,18,0.85); backdrop-filter: blur(8px); }
-    .pill { display:inline-block; padding:6px 10px; margin:4px; border-radius:999px; background:#121a2b; color:#cfe0ff; border:1px solid #1f2a44; font-size:12px; }
+    .pill { display:inline-block; padding:6px 10px; margin:4px 6px 0 0; border-radius:999px; background:#121a2b; color:#cfe0ff; border:1px solid #1f2a44; font-size:12px; }
     select, input { background:#0f1626; color:#d9e6ff; border:1px solid #2a3552; padding:6px; border-radius:8px; }
     .meta { margin:6px 0; }
     .section { margin:10px 0 18px; padding:10px; border-radius:14px; background:#0e1524; border:1px solid #1d2742; }
@@ -21,6 +21,65 @@
     .badge-err { background:#d21; color:#fff; }
     /* completely hide selected blocks while keeping DOM nodes for app.js safety */
     .hidden { display:none !important; }
+
+    /* ===== Pretty tooltip (hover + keyboard) ===== */
+    .tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      cursor: pointer; /* hand cursor */
+    }
+    /* keep semantic abbr and add subtle underline */
+    .tip abbr[title] {
+      text-decoration: underline dotted;
+      text-underline-offset: 2px;
+    }
+    /* bubble */
+    .tip::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: 135%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.88);
+      color: #fff;
+      padding: .45rem .6rem;
+      border-radius: .5rem;
+      font-size: .85rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .15s ease, visibility .15s ease, transform .15s ease;
+      z-index: 50;
+    }
+    /* arrow */
+    .tip::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 125%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top-color: rgba(0,0,0,.88);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .15s ease, visibility .15s ease;
+    }
+    /* show on hover or keyboard focus */
+    .tip:hover::after,
+    .tip:focus-visible::after,
+    .tip:hover::before,
+    .tip:focus-visible::before {
+      opacity: 1;
+      visibility: visible;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tip::after, .tip::before { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -42,9 +101,36 @@
       </div>
 
       <div class="section">
-        <div class="h">EVI2 (this year)</div>
+        <div class="h">
+          <span class="tip" tabindex="0"
+                aria-label="Enhanced Vegetation Index 2 help"
+                data-tip="Enhanced Vegetation Index 2 — a satellite ‘greenness’ metric (typically ranges 0–1).">
+            <abbr title="Enhanced Vegetation Index 2">EVI2</abbr>
+          </span>
+          (this year)
+        </div>
         <canvas id="chart"></canvas>
         <div id="forecast" class="meta"></div>
+
+        <!-- 🛈 Term legend with tooltips (does not conflict with JS that fills #stats/#forecast) -->
+        <div class="meta" aria-label="Phenology term legend">
+          <span class="pill tip" tabindex="0"
+                data-tip="Highest bloom = peak greenness in the season, measured by the EVI2 index (0–1).">
+            Highest bloom
+          </span>
+          <span class="pill tip" tabindex="0"
+                data-tip="SoS = Start of Season — the first date when greenness (EVI2) rises past the season threshold.">
+            SoS
+          </span>
+          <span class="pill tip" tabindex="0"
+                data-tip="EoS = End of Season — the last date when greenness (EVI2) falls below the season threshold.">
+            EoS
+          </span>
+          <span class="pill tip" tabindex="0"
+                data-tip="EVI2 = Enhanced Vegetation Index 2 — a satellite-based vegetation ‘greenness’ index (0 means little/no vegetation; ~0.8–0.9 is very lush).">
+            What is EVI2?
+          </span>
+        </div>
       </div>
 
       <div class="section">
