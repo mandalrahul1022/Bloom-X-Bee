@@ -1,8 +1,10 @@
-# Phenology — 10 Places
+# project description
 
-Split frontend/backend with NASA Harmony EVI fetch, NPN stub, and Node proxy.
+Are you a beekeeper worried about honey yields? BloomWatch turns global satellite streams into local, day-by-day bloom intelligence you can use. We built a simple open web app and predictive model that fuses NASA Earth observations (HLS EVI2, MODIS/VIIRS phenology) with local weather to map flowering, forecast peak windows, and estimate honey yield for major cities worldwide. Each location page displays daily bloom curves, month-by-month seasonality, a 20-year trend line illustrating shifting bloom timing, and practical guidance on pollination timing and hive placement.
+
 
 ## Run
+Use of simulation models like 
 
 ### Backend
 - `pip install -r backend/requirements.txt`
@@ -16,10 +18,8 @@ Split frontend/backend with NASA Harmony EVI fetch, NPN stub, and Node proxy.
 
 ## Precompute the JSON
 - `python backend/precompute.py` (with API running on :8000)
-- It writes `frontend/phenology_10_places.json`
+- 
 
 ## Notes
-- If NASA calls fail, backend can be hit with `mock=1` to get a synthetic series.
-- The UI uses your JSON by default and falls back to a synthetic dataset if missing.
-- Wire `/api/npn_openflowers` to a real USA-NPN endpoint when ready.
+
 # Bloom-X-Bee
